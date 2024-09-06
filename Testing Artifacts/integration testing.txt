@@ -1,0 +1,19 @@
+import unittest
+from network_analysis import NetworkAnalysis
+from network_device import NetworkDevice
+
+class TestNetworkIntegration(unittest.TestCase):
+    def setUp(self):
+        devices = [
+            NetworkDevice("Router", "Router", 2500, {"Bandwidth": "500 Mbps"}),
+            NetworkDevice("Switch", "Switch", 1500, {"Ports": 24}),
+        ]
+        self.analysis = NetworkAnalysis(devices, 1000)
+
+    def test_performance_simulation(self):
+        performance = self.analysis.simulate_performance()
+        self.assertTrue(len(performance) > 0)
+        self.assertTrue(all(value > 0 for value in performance.values()))
+
+if __name__ == '__main__':
+    unittest.main()

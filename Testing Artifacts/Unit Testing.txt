@@ -1,0 +1,27 @@
+import unittest
+from network_device import NetworkDevice
+
+class TestNetworkDevice(unittest.TestCase):
+    def setUp(self):
+        self.device = NetworkDevice(
+            name="Cisco ISR 4431 Integrated Services Router",
+            device_type="Router",
+            cost=2500,
+            specifications={"Bandwidth": "500 Mbps", "WAN Optimization": True}
+        )
+
+    def test_device_name(self):
+        self.assertEqual(self.device.name, "Cisco ISR 4431 Integrated Services Router")
+
+    def test_device_cost(self):
+        self.assertEqual(self.device.cost, 2500)
+
+    def test_device_type(self):
+        self.assertEqual(self.device.device_type, "Router")
+
+    def test_device_specifications(self):
+        self.assertTrue(self.device.specifications["WAN Optimization"])
+        self.assertEqual(self.device.specifications["Bandwidth"], "500 Mbps")
+
+if __name__ == '__main__':
+    unittest.main()

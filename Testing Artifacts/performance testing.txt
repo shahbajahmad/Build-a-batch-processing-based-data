@@ -1,0 +1,22 @@
+import time
+from network_analysis import NetworkAnalysis
+from network_device import NetworkDevice
+
+def performance_test():
+    devices = [
+        NetworkDevice("Router", "Router", 2500, {"Bandwidth": "500 Mbps"}),
+        NetworkDevice("Switch", "Switch", 1500, {"Ports": 24}),
+        NetworkDevice("Firewall", "Firewall", 3500, {"Throughput": "10 Gbps"})
+    ]
+    analysis = NetworkAnalysis(devices, 1000)
+    
+    start_time = time.time()
+    performance = analysis.simulate_performance()
+    end_time = time.time()
+    
+    duration = end_time - start_time
+    print(f"Performance Test Completed in {duration:.4f} seconds")
+    
+    return performance, duration
+
+performance_data, duration = performance_test()
